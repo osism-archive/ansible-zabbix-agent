@@ -1,0 +1,21 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: openstack
+lint: |
+  yamllint -c molecule/default/yamllint.yml .
+  ansible-lint --exclude molecule
+platforms:
+  - name: $PLATFORM_NAME
+provisioner:
+  name: ansible
+  inventory:
+    group_vars:
+      all:
+        ansible_python_interpreter: /usr/bin/python3
+verifier:
+  name: testinfra
+  enabled: false
+scenario:
+  name: default

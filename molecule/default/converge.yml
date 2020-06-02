@@ -1,0 +1,9 @@
+---
+- name: Playbook for role testing
+  hosts: all
+
+  vars:
+    zabbix_agent_configure_repository: yes
+
+  roles:
+    - role: ansible-zabbix-agent

@@ -1,0 +1,7 @@
+ansible-lint
+molecule-openstack
+molecule>=3.0
+openstacksdk
+paramiko
+shade
+testinfra
