@@ -63,7 +63,7 @@ LogFileSize=0
 # Default:
 # SourceIP=
 
-SourceIP={{ internal_address|default(ansible_default_ipv4.address) }}
+SourceIP={{ zabbix_agent_source }}
 
 ##### Passive checks related
 
@@ -79,7 +79,7 @@ SourceIP={{ internal_address|default(ansible_default_ipv4.address) }}
 # Default:
 # Server=
 
-Server={{ zabbix_server|default('127.0.0.1') }}
+Server={{ zabbix_agent_server }}
 
 ### Option: ListenPort
 #	Agent will listen on this port for connections from the server.
@@ -87,7 +87,7 @@ Server={{ zabbix_server|default('127.0.0.1') }}
 # Mandatory: no
 # Range: 1024-32767
 # Default:
-# ListenPort=10050
+ListenPort={{ zabbix_agent_port }}
 
 ### Option: ListenIP
 #	List of comma delimited IP addresses that the agent should listen on.
@@ -97,7 +97,7 @@ Server={{ zabbix_server|default('127.0.0.1') }}
 # Default:
 # ListenIP=0.0.0.0
 
-ListenIP={{ internal_address|default('0.0.0.0') }}
+ListenIP={{ zabbix_agent_host }}
 
 ### Option: StatusPort
 #	Agent will listen on this port for HTTP status requests.
@@ -121,7 +121,7 @@ ListenIP={{ internal_address|default('0.0.0.0') }}
 # Default:
 # ServerActive=
 
-ServerActive={{ zabbix_server|default('127.0.0.1') }}
+ServerActive={{ zabbix_agent_server }}
 
 ### Option: Hostname
 #	Unique, case sensitive hostname.
@@ -132,7 +132,7 @@ ServerActive={{ zabbix_server|default('127.0.0.1') }}
 # Default:
 # Hostname=
 
-Hostname={{ inventory_hostname }}
+Hostname={{ zabbix_agent_hostname }}
 
 ### Option: HostnameItem
 #	Item used for generating Hostname if it is undefined. Ignored if Hostname is defined.
