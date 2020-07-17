@@ -16,4 +16,4 @@ zabbix_agent_configure_repository: no
 zabbix_agent_version: 5.0
 zabbix_agent_debian_repository_arch: amd64
 zabbix_agent_debian_repository_key: https://repo.zabbix.com/zabbix-official-repo.key
-zabbix_agent_debian_repository: "deb [ arch={{ zabbix_agent_debian_repository_arch }} ] http://repo.zabbix.com/zabbix/{{ zabbix_agent_version }}/ubuntu {{ ansible_distribution_release }} main"
+zabbix_agent_debian_repository: "deb [ arch={{ zabbix_agent_debian_repository_arch }} ] https://repo.zabbix.com/zabbix/{{ zabbix_agent_version }}/ubuntu {{ ansible_distribution_release }} main"
