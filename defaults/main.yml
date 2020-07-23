@@ -27,3 +27,21 @@ zabbix_agent_version: 5.0
 zabbix_agent_debian_repository_arch: amd64
 zabbix_agent_debian_repository_key: https://repo.zabbix.com/zabbix-official-repo.key
 zabbix_agent_debian_repository: "deb [ arch={{ zabbix_agent_debian_repository_arch }} ] https://repo.zabbix.com/zabbix/{{ zabbix_agent_version }}/ubuntu {{ ansible_distribution_release }} main"
+
+##########################
+# extensions
+
+zabbix_agent_install_extensions: yes
+zabbix_agent_extensions:
+  - name: zabbix-agent-extension-mysql
+    group: mariadb
+    binary_files:
+      - zabbix-agent-extension-mysql
+    configuration_files:
+      - zabbix-agent-extension-mysql.conf
+    macros:
+      - MYSQL_DSN
+      - MYSQL_PASS
+      - MYSQL_USER
+      - ZABBIX_SERVER_IP
+      - ZABBIX_SERVER_PORT
