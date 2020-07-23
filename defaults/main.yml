@@ -9,9 +9,14 @@ zabbix_agent_hostname: "{{ inventory_hostname }}"
 zabbix_agent_configuration_file: zabbix_agent2.conf
 
 ##########################
-# packages
+# package
 
 zabbix_agent_package_name: zabbix-agent2
+
+##########################
+# service
+
+zabbix_agent_service_name: zabbix-agent2
 
 ##########################
 # repository
