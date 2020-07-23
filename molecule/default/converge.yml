@@ -1,8 +1,10 @@
 ---
 - name: Playbook for role testing
   hosts: all
+  connection: paramiko
 
   vars:
+    ansible_ssh_user: dragon
     zabbix_agent_configure_repository: yes
 
   roles:
