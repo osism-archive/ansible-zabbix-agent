@@ -2,10 +2,20 @@
 - name: Playbook for role preparations
   hosts: all
 
-  roles: []
+  vars:
+    docker_configure_repository: yes
+
+  roles:
+    - role: osism.operator
+    - role: osism.docker
 
   tasks:
-    - name: Update package cache
-      apt:
-        update_cache: yes
+    - name: Copy ssh private key for operator user
+      copy:
+        src: /home/ubuntu/.ssh/authorized_keys
+        dest: /home/dragon/.ssh/authorized_keys
+        remote_src: true
+        owner: dragon
+        group: dragon
+        mode: 0600
       become: true

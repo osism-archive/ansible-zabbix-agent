@@ -38,6 +38,13 @@
   become: true
   notify: Restart zabbix-agent service
 
+- name: Add zabbix user to docker group
+  user:
+    name: zabbix
+    groups: docker
+    append: yes
+  become: true
+
 - name: Start zabbix-agent service
   service:
     name: "{{ zabbix_agent_service_name }}"
