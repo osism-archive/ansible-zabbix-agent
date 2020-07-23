@@ -1,53 +1,13 @@
 ---
-- name: Install apt-transport-https package
-  apt:
-    name: apt-transport-https
-    state: present
-  become: true
-  when: zabbix_agent_configure_repository|bool
-  changed_when: false
+- name: Include distribution specific install tasks
+  include_tasks: "install-{{ ansible_os_family }}.yml"
 
-- name: Add repository gpg key
-  apt_key:
-    url: "{{ zabbix_agent_debian_repository_key }}"
-  become: true
-  when: zabbix_agent_configure_repository|bool
+- name: Include config tasks
+  include_tasks: config.yml
 
-- name: Add repository
-  apt_repository:
-    repo: "{{ zabbix_agent_debian_repository }}"
-    state: present
-    filename: zabbix
-    update_cache: yes
-  become: true
-  when: zabbix_agent_configure_repository|bool
-
-- name: Install required packages
-  package:
-    name: "{{ zabbix_agent_package_name }}"
-    state: present
-  become: true
-
-- name: Copy zabbix_agentd.conf configuration file
-  template:
-    src: "{{ zabbix_agent_configuration_file }}.j2"
-    dest: "/etc/zabbix/{{ zabbix_agent_configuration_file }}"
-    owner: root
-    group: root
-    mode: 0644
-  become: true
-  notify: Restart zabbix-agent service
-
-- name: Add zabbix user to docker group
-  user:
-    name: zabbix
-    groups: docker
-    append: yes
-  become: true
-
-- name: Start zabbix-agent service
-  service:
-    name: "{{ zabbix_agent_service_name }}"
-    state: started
-    enabled: true
-  become: true
+- name: Manage agent extensions
+  include_tasks: agent-extension.yml
+  loop: "{{ zabbix_agent_extensions }}"
+  loop_control:
+    loop_var: zabbix_extension
+  when: zabbix_agent_install_extensions|bool
