@@ -36,11 +36,11 @@
     group: root
     mode: 0644
   become: true
-  notify: Restart zabbix-agent2 service
+  notify: Restart zabbix-agent service
 
-- name: Start zabbix-agent2 service
+- name: Start zabbix-agent service
   service:
-    name: zabbix-agent2
+    name: "{{ zabbix_agent_service_name }}"
     state: started
     enabled: true
   become: true

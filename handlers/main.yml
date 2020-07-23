@@ -1,6 +1,6 @@
 ---
-- name: Restart zabbix-agent2 service
+- name: Restart zabbix-agent service
   service:
-    name: zabbix-agent2
+    name: "{{ zabbix_agent_service_name }}"
     state: restarted
   become: true
