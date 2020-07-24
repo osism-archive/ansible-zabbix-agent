@@ -2,7 +2,7 @@
 - name: "Copy configuration files of extension {{ zabbix_extension.name }}"
   template:
     src: "{{ zabbix_extension.name }}/{{ item }}.j2"
-    dest: "/etc/zabbix/zabbix_agentd.conf.d/{{ item }}"
+    dest: "/etc/zabbix/zabbix_agent2.d/{{ item }}"
     owner: root
     group: root
     mode: 0644
