@@ -1,6 +1,0 @@
----
-ansible_role_name: zabbix-agent
-distributions:
-  - bionic
-  - focal
-travis_decrypt_key: f2c81ddc8dbc
